@@ -19,17 +19,17 @@ Ada 3 VM mini-network di dalam VirtualBox.
 4. Nyalakan virtual machine yang berisikan environment Bitnami-wordpress (opsional)
 
 # Steps
-1.  Buka Vagrantfile lalu ubah IP virtual machine yang akan dijadikan host
+1.  Buka Vagrantfile lalu ubah IP virtual machine yang akan dijadikan loadbalancer dan webserver
 2.  Save Vagrantfile
 2.  Buka haproxy-setup.sh lalu ubah IP server web1 dan web2 sesuai dengan IP pada virtual machine
 3.  Save haproxy-setup.sh
 4.  Nyalakan terminal, arahkan ke local path tempat disimpan Vagrantfile, lakukan vagrant up 
-5. 	Pada terminal, tulis code berikut untuk masuk ke dalam VM test: vagrant ssh test (VM pertama)
+5. 	Pada terminal, tulis code berikut untuk masuk ke dalam VM web1: vagrant ssh web1 (VM pertama)
 6.  Kemudian tulis code berikut untuk menginstall apache2: sudo apt-get install apache2-utils
 7.  Buka [http://localhost:8080/haproxy?stats](http://localhost:8080/haproxy?stats) di browser.
 8.  Buka [http://localhost:8081/](http://localhost:8081/) di browser. Ini adalah loadbalanced interface untuk kedua website.
     Atau bisa juga dibuka dari IP haproxy : 172.28.33.10
-9.  Untuk mengecek statistik pada VM test, tulis pada terminal: ab -n 1000 -c 1000 http://172.28.33.10/
+9.  Untuk menguji coba loadbalancer dengan request dan concurrency level yang ditentukan , tulis pada terminal: ab -n 1000 -c 1000 http://172.28.33.10/
 10. Refresh halaman [http://localhost:8080/haproxy?stats](http://localhost:8080/haproxy?stats) untuk melihat perubahan yang signifikan
 
 # Reference material
